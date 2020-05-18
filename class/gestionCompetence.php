@@ -34,8 +34,21 @@
             $req->closeCursor();
             return $data;
         }
-        public function displayLangage()
+        public function displayLanguage()
         {
+            $data = array();
+            $req = self::$db->prepare("SELECT * FROM hardskills WHERE hardskills_categorie = 'language'");
+            $status = $req->execute();
+            if (!$status) {
+                print_r($req->errorInfo());
+            }
+            while ($competence = $req->fetch()) {
+                $competences = new Competence();
+                $competences->setName($competence["hardskills_name"]);
+                array_push($data,$competences);
 
+            }
+            $req->closeCursor();
+            return $data;
         }
     }

@@ -25,6 +25,7 @@
             }
             while ($project = $req->fetch()) {
                 $projects = new Project();
+                $projects->setId($project["id_project"]);
                 $projects->setName($project["project_title"]);
                 $projects->setPicture($project["project_picture"]);
                 $projects->setFilter($project["project_filter"]);
